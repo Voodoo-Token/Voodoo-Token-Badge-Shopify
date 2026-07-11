@@ -1,0 +1,7 @@
+api_version = "2026-01"
+
+[[extensions]]
+uid = "f8b2c4e1-7a3d-4f9e-b2c1-6d8e0a4f2b9c"
+type = "theme"
+name = "Voodoo Token Badge"
+handle = "voodoo-token-badge"

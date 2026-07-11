@@ -1,0 +1,113 @@
+{%- liquid
+  assign title_text = 'voodoo_token_badge.title' | t
+  assign subtitle_text = 'voodoo_token_badge.subtitle' | t
+  assign logo_asset = 'voodoo-token-logo.png' | asset_url
+
+  assign size_scale = 1.0
+  case size
+    when 'small'
+      assign size_scale = 0.75
+    when 'large'
+      assign size_scale = 1.25
+    when 'xlarge'
+      assign size_scale = 1.5
+  endcase
+
+  assign font_family = 'Arial, Helvetica, sans-serif'
+
+  case font_family_key
+    when 'helvetica'
+      assign font_family = 'Helvetica, Arial, sans-serif'
+    when 'georgia'
+      assign font_family = 'Georgia, "Times New Roman", serif'
+    when 'times'
+      assign font_family = '"Times New Roman", Times, serif'
+    when 'verdana'
+      assign font_family = 'Verdana, Geneva, sans-serif'
+    when 'tahoma'
+      assign font_family = 'Tahoma, Geneva, sans-serif'
+    when 'trebuchet'
+      assign font_family = '"Trebuchet MS", Helvetica, sans-serif'
+    when 'system'
+      assign font_family = 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
+    when 'roboto'
+      assign font_family = 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
+    when 'open-sans'
+      assign font_family = 'Arial, Helvetica, sans-serif'
+    when 'montserrat'
+      assign font_family = 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
+    when 'poppins'
+      assign font_family = 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
+    when 'lato'
+      assign font_family = 'Arial, Helvetica, sans-serif'
+    when 'oswald'
+      assign font_family = 'Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif'
+    when 'raleway'
+      assign font_family = 'Arial, Helvetica, sans-serif'
+    when 'ubuntu'
+      assign font_family = 'Tahoma, Geneva, sans-serif'
+  endcase
+
+  assign position_origin = 'bottom right'
+  assign position_css = 'bottom:' | append: offset_y | append: 'px;right:' | append: offset_x | append: 'px;'
+
+  case position
+    when 'bottom-left'
+      assign position_origin = 'bottom left'
+      assign position_css = 'bottom:' | append: offset_y | append: 'px;left:' | append: offset_x | append: 'px;'
+    when 'top-right'
+      assign position_origin = 'top right'
+      assign position_css = 'top:' | append: offset_y | append: 'px;right:' | append: offset_x | append: 'px;'
+    when 'top-left'
+      assign position_origin = 'top left'
+      assign position_css = 'top:' | append: offset_y | append: 'px;left:' | append: offset_x | append: 'px;'
+  endcase
+
+  assign wrap_classes = 'voodoo-token-badge-wrap voodoo-pos-' | append: position
+  if enable_shadow
+    assign wrap_classes = wrap_classes | append: ' vtb-has-shadow'
+  endif
+  if enable_hover_zoom
+    assign wrap_classes = wrap_classes | append: ' vtb-hover-zoom'
+  endif
+-%}
+
+{{ 'voodoo-token-badge.css' | asset_url | stylesheet_tag }}
+
+<style>
+  #voodoo-token-badge {
+    --vtb-scale: {{ size_scale }};
+    --vtb-bg: {{ bg_color }};
+    --vtb-text: {{ text_color }};
+    --vtb-font: {{ font_family }};
+    --vtb-z-index: {{ z_index }};
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    transform-origin: {{ position_origin }};
+    {{ position_css }}
+  }
+  {%- unless show_on_mobile -%}
+  @media (max-width: 480px) {
+    #voodoo-token-badge { display: none !important; }
+  }
+  {%- endunless -%}
+</style>
+
+<div id="voodoo-token-badge" class="{{ wrap_classes }}" aria-label="{{ subtitle_text }}">
+  <div class="voodoo-button voodoo-button-static" role="img" aria-hidden="true">
+    <img
+      src="{{ logo_asset }}"
+      class="voodoo-logo"
+      alt="{{ title_text }}"
+      width="34"
+      height="34"
+      loading="lazy"
+    >
+    <div class="text-container">
+      <span class="voodoo-title">{{ title_text }}</span>
+      <span class="voodoo-subtitle">{{ subtitle_text }}</span>
+    </div>
+  </div>
+</div>

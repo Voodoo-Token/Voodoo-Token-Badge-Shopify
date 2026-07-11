@@ -1,0 +1,78 @@
+{%- liquid
+  assign badge_settings = shop.metafields.app.badge_settings.value
+  assign enabled = true
+  assign size = 'medium'
+  assign position = 'bottom-right'
+  assign offset_x = 20
+  assign offset_y = 20
+  assign bg_color = '#0c3c4c'
+  assign text_color = '#ffffff'
+  assign font_family_key = 'arial'
+  assign enable_shadow = false
+  assign enable_hover_zoom = false
+  assign show_on_mobile = true
+  assign z_index = 999999
+
+  if badge_settings != blank
+    if badge_settings.enabled == false
+      assign enabled = false
+    endif
+    if badge_settings.size != blank
+      assign size = badge_settings.size
+    endif
+    if badge_settings.position != blank
+      assign position = badge_settings.position
+    endif
+    if badge_settings.offset_x != blank
+      assign offset_x = badge_settings.offset_x
+    endif
+    if badge_settings.offset_y != blank
+      assign offset_y = badge_settings.offset_y
+    endif
+    if badge_settings.bg_color != blank
+      assign bg_color = badge_settings.bg_color
+    endif
+    if badge_settings.text_color != blank
+      assign text_color = badge_settings.text_color
+    endif
+    if badge_settings.font_family != blank
+      assign font_family_key = badge_settings.font_family
+    endif
+    if badge_settings.enable_shadow
+      assign enable_shadow = true
+    endif
+    if badge_settings.enable_hover_zoom
+      assign enable_hover_zoom = true
+    endif
+    if badge_settings.show_on_mobile == false
+      assign show_on_mobile = false
+    endif
+    if badge_settings.z_index != blank
+      assign z_index = badge_settings.z_index
+    endif
+  endif
+-%}
+
+{%- if enabled -%}
+  {% render 'voodoo-token-badge',
+    size: size,
+    position: position,
+    offset_x: offset_x,
+    offset_y: offset_y,
+    bg_color: bg_color,
+    text_color: text_color,
+    font_family_key: font_family_key,
+    enable_shadow: enable_shadow,
+    enable_hover_zoom: enable_hover_zoom,
+    show_on_mobile: show_on_mobile,
+    z_index: z_index
+  %}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:voodoo_token_badge.name",
+  "target": "body",
+  "settings": []
+}
+{% endschema %}

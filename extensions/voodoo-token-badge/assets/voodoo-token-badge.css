@@ -1,0 +1,84 @@
+.voodoo-token-badge-wrap {
+	position: fixed;
+	z-index: var(--vtb-z-index, 999999);
+	pointer-events: auto;
+	transform: scale(var(--vtb-scale, 1));
+}
+
+.voodoo-token-badge-wrap .voodoo-button {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	background: var(--vtb-bg, #0c3c4c);
+	color: var(--vtb-text, #fff);
+	padding: 10px 20px;
+	border: none;
+	border-radius: 18px;
+	font-family: var(--vtb-font, Arial, Helvetica, sans-serif);
+	font-size: 15px;
+	font-weight: bold;
+	text-transform: uppercase;
+	cursor: default;
+	box-shadow: none;
+	text-decoration: none;
+	min-width: 190px;
+	justify-content: center;
+}
+
+.voodoo-token-badge-wrap.vtb-has-shadow .voodoo-button {
+	box-shadow: 0 6px 16px rgba(12, 60, 76, 0.5);
+}
+
+.voodoo-token-badge-wrap.vtb-hover-zoom .voodoo-button {
+	transition: transform 0.3s ease;
+}
+
+.voodoo-token-badge-wrap.vtb-hover-zoom .voodoo-button:hover,
+.voodoo-token-badge-wrap.vtb-hover-zoom .voodoo-button:focus {
+	transform: scale(1.04);
+}
+
+.voodoo-token-badge-wrap .voodoo-button:hover,
+.voodoo-token-badge-wrap .voodoo-button:focus,
+.voodoo-token-badge-wrap .voodoo-button:active {
+	background: var(--vtb-bg, #0c3c4c);
+	color: var(--vtb-text, #fff);
+	text-decoration: none;
+	outline: none;
+}
+
+.voodoo-token-badge-wrap:not(.vtb-hover-zoom) .voodoo-button:hover,
+.voodoo-token-badge-wrap:not(.vtb-hover-zoom) .voodoo-button:focus,
+.voodoo-token-badge-wrap:not(.vtb-hover-zoom) .voodoo-button:active {
+	transform: none;
+}
+
+.voodoo-token-badge-wrap.vtb-has-shadow:not(.vtb-hover-zoom) .voodoo-button:hover,
+.voodoo-token-badge-wrap.vtb-has-shadow:not(.vtb-hover-zoom) .voodoo-button:focus,
+.voodoo-token-badge-wrap.vtb-has-shadow:not(.vtb-hover-zoom) .voodoo-button:active {
+	box-shadow: 0 6px 16px rgba(12, 60, 76, 0.5);
+}
+
+.voodoo-token-badge-wrap .voodoo-logo {
+	width: 34px;
+	height: 34px;
+	border-radius: 50%;
+	object-fit: contain;
+	flex-shrink: 0;
+}
+
+.voodoo-token-badge-wrap .text-container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	line-height: 1.05;
+}
+
+.voodoo-token-badge-wrap .voodoo-title {
+	font-size: 16px;
+}
+
+.voodoo-token-badge-wrap .voodoo-subtitle {
+	font-size: 13px;
+	opacity: 0.95;
+}

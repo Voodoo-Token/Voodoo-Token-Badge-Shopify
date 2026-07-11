@@ -1,0 +1,38 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "ea5ffcc20e97f42140339ff317f657dc"
+application_url = "https://example.com"
+embedded = true
+name = "Voodoo Token Badge"
+
+[access_scopes]
+scopes = ""
+optional_scopes = [ ]
+use_legacy_install_flow = false
+
+[shop.metafields.app.badge_settings]
+type = "json"
+name = "Voodoo Token Badge Settings"
+description = "Storefront badge display and appearance settings"
+
+  [shop.metafields.app.badge_settings.access]
+  admin = "merchant_read_write"
+  storefront = "public_read"
+
+[webhooks]
+api_version = "2026-07"
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/app/uninstalled"
+  topics = [ "app/uninstalled" ]
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/app/scopes_update"
+  topics = [ "app/scopes_update" ]
+
+[auth]
+redirect_urls = [ "https://example.com/auth/callback" ]
+
+[build]
+include_config_on_deploy = true
+automatically_update_urls_on_dev = true
